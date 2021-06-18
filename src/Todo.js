@@ -9,10 +9,10 @@ import {
   IconButton,
   ListItemSecondaryAction,
 } from "@material-ui/core";
-import { TodosContext } from "./contexts/TodosContext";
+import { DispatchContext } from "./contexts/TodosContext";
 
 export default function Todo({ id, task, completed }) {
-  const { dispatch } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
   const [isEditing, toggleEditing] = useToggleState();
 
   return (
