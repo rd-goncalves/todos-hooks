@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import EditTodoForm from "./EditTodoForm";
 import useToggleState from "./hooks/useToggleState";
 import { Delete, Edit } from "@material-ui/icons";
@@ -9,26 +9,16 @@ import {
   IconButton,
   ListItemSecondaryAction,
 } from "@material-ui/core";
+import { TodosContext } from "./contexts/TodosContext";
 
-export default function Todo({
-  id,
-  task,
-  completed,
-  removeTodo,
-  toggleTodo,
-  editTodo,
-}) {
+export default function Todo({ id, task, completed }) {
+  const { removeTodo, toggleTodo } = useContext(TodosContext);
   const [isEditing, toggleEditing] = useToggleState();
 
   return (
     <ListItem style={{ height: "64px" }}>
       {isEditing ? (
-        <EditTodoForm
-          id={id}
-          editTodo={editTodo}
-          task={task}
-          toggleEditing={toggleEditing}
-        />
+        <EditTodoForm id={id} task={task} toggleEditing={toggleEditing} />
       ) : (
         <>
           <Checkbox
